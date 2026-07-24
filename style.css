@@ -1,0 +1,1498 @@
+/* =======================================================
+   GLOBAL RESET
+======================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:'Quicksand',sans-serif;
+
+    overflow:hidden;
+
+    width:100vw;
+    height:100vh;
+
+    background-color: #ffeef5;
+
+background-image:
+linear-gradient(90deg, rgba(255,255,255,.45) 50%, transparent 50%),
+linear-gradient(rgba(255,255,255,.45) 50%, transparent 50%);
+
+background-size: 50px 50px;
+}
+
+/* =======================================================
+   SCREENS
+======================================================= */
+
+.screen{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:40px;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+
+    transform:scale(.97);
+
+}
+
+.screen.active{
+
+    opacity:1;
+
+    pointer-events:auto;
+
+    transform:scale(1);
+
+}
+
+/* =======================================================
+   TYPOGRAPHY
+======================================================= */
+
+h1{
+
+    font-family: "Delius", cursive;
+
+    font-size:3.2rem;
+
+    margin-bottom:18px;
+
+}
+
+.subtitle{
+
+    font-size:1.1rem;
+
+    max-width:520px;
+
+    margin-bottom:30px;
+
+    line-height:1.7;
+
+}
+
+/* =======================================================
+   BUTTONS
+======================================================= */
+
+button{
+
+    cursor:pointer;
+
+    border:none;
+
+    outline:none;
+
+    padding:15px 34px;
+
+    border-radius:50px;
+
+    font-size:1rem;
+
+    font-weight:700;
+
+    background:#935dd2;;
+
+    color:white;
+
+    transition:.25s;
+
+    box-shadow:
+        0 10px 25px rgba(255,120,181,.25);
+
+}
+
+button:hover{
+
+    transform:translateY(-4px);
+
+    background:#ba95f6;
+
+}
+
+button:active{
+
+    transform:scale(.96);
+
+}
+
+.hidden{
+
+    display:none;
+
+}
+
+/* =======================================================
+   PASSWORD PAGE
+======================================================= */
+
+.loginBox{
+
+    width:min(420px,90vw);
+
+    background:white;
+
+    border-radius:30px;
+
+    padding:45px;
+
+    box-shadow:
+
+        0 20px 50px rgba(0,0,0,.12);
+
+}
+
+.loginBox h1{
+
+    color:#9C7BDB;;
+
+}
+
+.loginBox input{
+
+    width:100%;
+
+    padding:15px;
+
+    margin:20px 0;
+
+    border-radius:15px;
+
+    border:2px solid #ffd4e8;
+
+    font-size:1rem;
+
+    transition:.3s;
+
+}
+
+.loginBox input:focus{
+
+    border-color:#c078ff;
+
+}
+
+#passwordError{
+
+    margin-top:18px;
+
+    color:#7342c2;
+
+    font-weight:700;
+
+}
+
+/* =======================================================
+   WELCOME PAGE
+======================================================= */
+
+.welcomeCard{
+
+    background:white;
+
+    border-radius:35px;
+
+    padding:55px;
+
+    width:min(650px,92vw);
+
+    box-shadow:
+
+        0 25px 60px rgba(0,0,0,.12);
+
+}
+
+.glow{
+
+    color:#b568fda2;
+
+    text-shadow:
+
+        0 0 10px #ffd0e6,
+
+        0 0 25px #ffc2df,
+
+        0 0 40px #ff8dc3;
+
+}
+
+.welcomeCard p{
+
+    font-size:1.2rem;
+
+    margin-bottom:35px;
+
+}
+
+/* =======================================================
+   FLOATING DECORATIONS
+======================================================= */
+
+#petalContainer,
+
+#heartContainer,
+
+#confettiContainer,
+
+#sparkleLayer,
+
+#floatingStars{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    overflow:hidden;
+
+}
+
+.petal{
+
+    position:absolute;
+
+    width:18px;
+
+    height:18px;
+
+    background:pink;
+
+    border-radius:60% 40% 60% 40%;
+
+    opacity:.65;
+
+    animation:fall linear forwards;
+
+}
+
+.heart{
+
+    position:absolute;
+
+    font-size:18px;
+
+    animation:floatUp linear forwards;
+
+}
+
+/* =======================================================
+   GENERAL ANIMATIONS
+======================================================= */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes fall{
+
+    from{
+
+        transform:
+            translateY(-10vh)
+            rotate(0deg);
+
+    }
+
+    to{
+
+        transform:
+            translateY(110vh)
+            rotate(360deg);
+
+    }
+
+}
+
+@keyframes floatUp{
+
+    from{
+
+        transform:translateY(0);
+
+        opacity:1;
+
+    }
+
+    to{
+
+        transform:translateY(-120vh);
+
+        opacity:0;
+
+    }
+
+}
+
+/* =======================================================
+   LOADER
+======================================================= */
+
+#loadingScreen{
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:white;
+
+    z-index:9999;
+
+}
+
+.loader{
+
+    text-align:center;
+
+}
+
+.loaderHeart{
+
+    font-size:60px;
+
+    animation:pulse 1s infinite;
+
+}
+
+@keyframes pulse{
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.2);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+/* =======================================================
+   ANIMAL SCREEN
+======================================================= */
+
+#animalScreen h1{
+
+    color:#cc9aed;
+
+}
+
+.animalContainer{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:35px;
+
+    margin:40px 0;
+
+}
+
+.animalCard{
+
+    width:220px;
+
+    background:rgba(255,255,255,.75);
+
+    backdrop-filter:blur(12px);
+
+    border-radius:28px;
+
+    padding:25px;
+
+    transition:.35s;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.10);
+
+}
+
+.animalCard:hover{
+
+    transform:
+        translateY(-12px)
+        rotate(-2deg)
+        scale(1.04);
+
+    box-shadow:
+        0 20px 45px rgba(255,105,180,.25);
+
+}
+
+.animal{
+
+    width:130px;
+
+    transition:.35s;
+
+}
+
+.animalCard:hover .animal{
+
+    transform:scale(1.12) rotate(4deg);
+
+}
+
+.animalCard h3{
+
+    margin-top:18px;
+
+    color:#c05aff;
+
+    font-size:1.5rem;
+
+}
+
+.animalCard p{
+
+    margin-top:10px;
+
+    font-size:1rem;
+
+    color:#666;
+
+}
+
+/* =======================================================
+   POPUPS
+======================================================= */
+
+.popup{
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(0,0,0,.45);
+
+    z-index:500;
+
+    animation:fadePopup .35s;
+
+}
+
+.popupContent{
+
+    width:min(700px,92vw);
+
+    max-height:85vh;
+
+    overflow-y:auto;
+
+    background:white;
+
+    border-radius:30px;
+
+    padding:35px;
+
+    position:relative;
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.20);
+
+}
+
+.close{
+
+    position:absolute;
+
+    top:18px;
+
+    right:25px;
+
+    font-size:35px;
+
+    cursor:pointer;
+
+    color:#ba92fa;
+
+    transition:.25s;
+
+}
+
+.close:hover{
+
+    transform:rotate(90deg);
+
+}
+
+/* =======================================================
+   LETTER
+======================================================= */
+
+#letterPaper{
+
+    margin-top:25px;
+
+    background:#fffdf7;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    text-align:left;
+
+    line-height:1.9;
+
+    font-size:1.1rem;
+
+    font-family:'Patrick Hand',cursive;
+
+    box-shadow:
+        inset 0 0 25px rgba(0,0,0,.05);
+
+}
+
+#letterText{
+
+    white-space:pre-wrap;
+
+}
+
+/* =======================================================
+   VIDEO
+======================================================= */
+
+video{
+
+    width:100%;
+
+    border-radius:20px;
+
+    margin-top:20px;
+
+}
+
+/* =======================================================
+   CONTINUE BUTTON
+======================================================= */
+
+#continueButton{
+
+    margin-top:25px;
+
+    animation:bounce 1.5s infinite;
+
+}
+
+/* =======================================================
+   MUSIC BUTTON
+======================================================= */
+
+#musicButton{
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:1.4rem;
+
+    z-index:999;
+
+    box-shadow:
+        0 12px 25px rgba(0,0,0,.18);
+
+}
+
+/* =======================================================
+   OVERLAYS
+======================================================= */
+
+#screenOverlay,
+
+#flashOverlay,
+
+#fadeOverlay{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    opacity:0;
+
+}
+
+#flashOverlay{
+
+    background:white;
+
+}
+
+#fadeOverlay{
+
+    background:#fff0f7;
+
+}
+
+/* =======================================================
+   ANIMATIONS
+======================================================= */
+
+@keyframes bounce{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-8px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes fadePopup{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.85);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+@keyframes shake{
+
+    0%{transform:translateX(0);}
+    20%{transform:translateX(-8px);}
+    40%{transform:translateX(8px);}
+    60%{transform:translateX(-8px);}
+    80%{transform:translateX(8px);}
+    100%{transform:translateX(0);}
+
+}
+
+.shake{
+
+    animation:shake .45s;
+
+}
+/* =======================================================
+   BIRTHDAY SCREEN
+======================================================= */
+
+#birthdayScreen{
+
+    background:
+        radial-gradient(circle at top,
+        rgba(255,255,255,.5),
+        transparent 70%);
+
+}
+
+.birthdayCard{
+
+    background:white;
+
+    width:min(700px,92vw);
+
+    padding:55px;
+
+    border-radius:35px;
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.12);
+
+    animation:fadeIn .8s;
+
+}
+
+.birthdayTitle{
+
+    font-size:4rem;
+
+    color:#aa5aff;
+
+    text-shadow:
+        0 0 15px #ffd1e6;
+
+}
+
+.birthdaySubtitle{
+
+    margin:25px 0 35px;
+
+    font-size:1.25rem;
+
+    line-height:1.8;
+
+}
+
+/* =======================================================
+   CAKE SCREEN
+======================================================= */
+
+#cakeScreen{
+
+    gap:25px;
+
+}
+
+#cakeArea{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:360px;
+
+}
+
+#cake{
+
+    position:relative;
+
+    width:260px;
+
+    height:260px;
+
+}
+
+/* =======================================================
+   CAKE LAYERS
+======================================================= */
+
+.cakeTop{
+
+    position:absolute;
+
+    bottom:150px;
+
+    left:20px;
+
+    width:220px;
+
+    height:55px;
+
+    background:#6B3E26;
+
+    border-radius:50px;
+
+}
+
+.cakeMiddle{
+
+    position:absolute;
+
+    bottom:90px;
+
+    left:10px;
+
+    width:240px;
+
+    height:70px;
+
+    background:#5A331F;
+
+    border-radius:20px;
+
+}
+
+.cakeBottom{
+
+    position:absolute;
+
+    bottom:0;
+
+    width:260px;
+
+    height:95px;
+
+    background:#4A2817;
+
+    border-radius:20px;
+
+}
+
+/* =======================================================
+   CANDLES
+======================================================= */
+
+#candles{
+
+    position:absolute;
+
+    top:0;
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:45px;
+
+}
+
+.candle{
+
+    width:12px;
+
+    height:60px;
+
+    background:#C0C0C0;
+
+    border-radius:8px;
+
+    position:relative;
+
+}
+
+.flame{
+
+    position:absolute;
+
+    top:-18px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:15px;
+
+    height:22px;
+
+    background:gold;
+
+    border-radius:50% 50% 50% 50%;
+
+    box-shadow:
+        0 0 20px orange;
+
+    animation:flicker .18s infinite alternate;
+
+}
+
+@keyframes flicker{
+
+    from{
+
+        transform:
+            translateX(-50%)
+            rotate(-3deg)
+            scale(1);
+
+    }
+
+    to{
+
+        transform:
+            translateX(-50%)
+            rotate(3deg)
+            scale(1.1);
+
+    }
+
+}
+
+/* =======================================================
+   CAKE SLICE
+======================================================= */
+
+#cakeSlice{
+
+    position:absolute;
+
+    bottom:95px;
+
+    left:95px;
+
+    width:85px;
+
+    height:75px;
+
+    background:#91624a;
+
+    clip-path:polygon(50% 0%,0% 100%,100% 100%);
+
+    opacity:0;
+
+}
+
+/* =======================================================
+   CAKE BUTTONS
+======================================================= */
+
+.cakeButtons{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:18px;
+
+    justify-content:center;
+
+}
+
+/* =======================================================
+   FINAL SCREEN
+======================================================= */
+
+#finalScreen{
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffe5f2,
+            #fff2fb,
+            #fff7e9
+        );
+
+}
+
+.finalCard{
+
+    background:white;
+
+    width:min(750px,92vw);
+
+    border-radius:35px;
+
+    padding:60px;
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.12);
+
+}
+
+.finalCard h1{
+
+    color:#c14fff;
+
+    margin-bottom:30px;
+
+}
+
+#typewriterText{
+
+    font-size:1.25rem;
+
+    line-height:2;
+
+    min-height:180px;
+
+    margin-bottom:35px;
+
+}
+
+/* =======================================================
+   REPLAY BUTTON
+======================================================= */
+
+#replayButton{
+
+    background:#9f08f0;
+
+}
+
+#replayButton:hover{
+
+    background:#a36df9;
+
+}
+
+/* =======================================================
+   MESSAGE CONTAINER
+======================================================= */
+
+#messageContainer{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+}
+
+.floatingMessage{
+
+    position:absolute;
+
+    background:white;
+
+    padding:12px 18px;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.12);
+
+    animation:messageFloat 4s forwards;
+
+    font-weight:bold;
+
+}
+
+@keyframes messageFloat{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(30px);
+
+    }
+
+    20%{
+
+        opacity:1;
+
+    }
+
+    80%{
+
+        opacity:1;
+
+    }
+
+    to{
+
+        opacity:0;
+
+        transform:
+            translateY(-80px);
+
+    }
+
+}
+/* =======================================================
+   SPARKLES
+======================================================= */
+
+.sparkle{
+
+    position:absolute;
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:50%;
+
+    background:white;
+
+    box-shadow:
+        0 0 12px white,
+        0 0 24px #ffd6ec;
+
+    animation:sparkle 2.5s linear forwards;
+
+}
+
+@keyframes sparkle{
+
+    0%{
+
+        opacity:0;
+        transform:scale(.3);
+
+    }
+
+    50%{
+
+        opacity:1;
+        transform:scale(1);
+
+    }
+
+    100%{
+
+        opacity:0;
+        transform:scale(0);
+
+    }
+
+}
+
+/* =======================================================
+   FLOATING STARS
+======================================================= */
+
+.star{
+
+    position:absolute;
+
+    color:#dab0ff;
+
+    font-size:18px;
+
+    animation:twinkle 3s infinite alternate;
+
+}
+
+@keyframes twinkle{
+
+    from{
+
+        opacity:.3;
+        transform:scale(.9);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:scale(1.2);
+
+    }
+
+}
+
+/* =======================================================
+   CONFETTI
+======================================================= */
+
+.confetti{
+
+    position:absolute;
+
+    width:12px;
+
+    height:18px;
+
+    animation:confettiFall linear forwards;
+
+}
+
+@keyframes confettiFall{
+
+    from{
+
+        transform:
+            translateY(-10vh)
+            rotate(0deg);
+
+    }
+
+    to{
+
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+    }
+
+}
+
+/* =======================================================
+   GLASS EFFECT
+======================================================= */
+
+.glass{
+
+    background:rgba(255,255,255,.55);
+
+    backdrop-filter:blur(14px);
+
+    border:1px solid rgba(255,255,255,.35);
+
+}
+
+/* =======================================================
+   SCROLLBAR
+======================================================= */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#ff9cc8;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#fff4f9;
+
+}
+
+/* =======================================================
+   RESPONSIVE
+======================================================= */
+
+@media (max-width:900px){
+
+    h1{
+
+        font-size:2.5rem;
+
+    }
+
+    .animalContainer{
+
+        gap:20px;
+
+    }
+
+    .animalCard{
+
+        width:180px;
+
+    }
+
+    .birthdayTitle{
+
+        font-size:3rem;
+
+    }
+
+}
+
+@media (max-width:700px){
+
+    body{
+
+        overflow:auto;
+
+    }
+
+    .screen{
+
+        padding:25px;
+
+    }
+
+    .loginBox,
+    .welcomeCard,
+    .birthdayCard,
+    .finalCard{
+
+        width:95%;
+
+        padding:30px;
+
+    }
+
+    .animalContainer{
+
+        flex-direction:column;
+
+        align-items:center;
+
+    }
+
+    .animalCard{
+
+        width:240px;
+
+    }
+
+    .cakeButtons{
+
+        flex-direction:column;
+
+        width:100%;
+
+    }
+
+    .cakeButtons button{
+
+        width:100%;
+
+    }
+
+    #musicButton{
+
+        width:55px;
+        height:55px;
+
+        right:15px;
+        bottom:15px;
+
+    }
+
+}
+
+@media (max-width:480px){
+
+    h1{
+
+        font-size:2rem;
+
+    }
+
+    .subtitle{
+
+        font-size:1rem;
+
+    }
+
+    #cake{
+
+        transform:scale(.82);
+
+    }
+
+    .birthdayTitle{
+
+        font-size:2.4rem;
+
+    }
+
+    #typewriterText{
+
+        font-size:1.05rem;
+
+        line-height:1.8;
+
+    }
+
+}
+
+/* =======================================================
+   SMALL POLISH
+======================================================= */
+
+button,
+.animalCard,
+.popupContent,
+.loginBox,
+.welcomeCard,
+.birthdayCard,
+.finalCard{
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        background .3s ease;
+
+}
+
+button:focus,
+input:focus{
+
+    outline:none;
+
+}
+
+::selection{
+
+    background:#ed9cff;
+
+    color:white;
+
+}
+
+/* =======================================================
+   END
+======================================================= */
+
+#preload{
+    display:none;
+}
